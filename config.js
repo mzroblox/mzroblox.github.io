@@ -2,6 +2,6 @@
 // Example: https://zain-roblox-stats.yourname.workers.dev
 window.PORTFOLIO_CONFIG = {
   workerUrl: "https://zainstats.seanscalesbusiness.workers.dev",
-  robloxProfileUrl: "", // Optional: your Roblox profile URL
+  robloxProfileUrl: "https://www.roblox.com/users/5844444498/profile", // Optional: your Roblox profile URL
   discordUrl: ""        // Optional: invite or Discord profile URL
 };
