@@ -1,171 +1,476 @@
+
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090512">
-<meta name="description" content="Zain — Roblox developer.">
+<meta name="theme-color" content="#080510">
+<meta name="description" content="Zain — Roblox game developer.">
 <title>Zain — Roblox Developer</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23090512'/%3E%3Ctext x='32' y='45' font-size='42' font-weight='bold' text-anchor='middle' fill='%23c084fc'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23080510'/%3E%3Ctext x='32' y='46' font-size='46' text-anchor='middle' fill='%23c084fc'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{color-scheme:dark;--bg:#090512;--line:rgba(192,132,252,.22);--muted:#a39ab7;--text:#f7f1ff;--purple:#c084fc;--violet:#8b5cf6}
+:root{
+  color-scheme:dark;
+  --bg:#080510;
+  --line:rgba(190,133,255,.24);
+  --muted:#a69ab9;
+  --text:#faf6ff;
+  --purple:#c084fc;
+  --violet:#7c3aed;
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
-#space{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
-body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% -15%,rgba(124,58,237,.3),transparent 55%),radial-gradient(ellipse at 85% 55%,rgba(88,28,135,.16),transparent 45%);transform:translate3d(calc(var(--mx,0)*-10px),calc(var(--my,0)*-10px),0)}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Manrope,system-ui,sans-serif;
+  position:relative;
+}
 a{color:inherit;text-decoration:none}
-.wrap{width:min(980px,calc(100% - 36px));margin:auto}
-.top{display:flex;justify-content:space-between;align-items:center;padding:25px 0;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.04em}
-.mark{width:36px;height:36px;border:1px solid #a855f777;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#3b1763,#160c29);font-size:20px;color:#f3d9ff;box-shadow:0 0 22px #9333ea30}
-.topright{font:10px 'DM Mono',monospace;color:#c4b5d9;letter-spacing:.12em;text-transform:uppercase;display:flex;gap:9px;align-items:center}
-.dot{width:7px;height:7px;border-radius:50%;background:#c084fc;box-shadow:0 0 12px #c084fc}
-.hero{padding:92px 0 30px}
-.eyebrow{font:11px 'DM Mono',monospace;letter-spacing:.17em;color:#c4a5fd;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.eyebrow:before{content:"";width:22px;height:1px;background:#c084fc}
-h1{font-size:clamp(43px,8vw,80px);letter-spacing:-.078em;line-height:1.02;margin:23px 0 17px;font-weight:800}
-.gradient{background:linear-gradient(105deg,#fff,#e9d5ff 24%,#c084fc 52%,#8b5cf6 73%,#f0abfc 95%);background-size:220% auto;color:transparent;background-clip:text;-webkit-background-clip:text;animation:shine 7s linear infinite;filter:drop-shadow(0 0 24px #a855f744)}
-@keyframes shine{to{background-position:220% center}}
-.intro{color:#b7abc9;max-width:590px;font-size:14px;line-height:1.85}
-.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:27px}
-.btn{border:1px solid #c084fc55;border-radius:10px;padding:11px 15px;font-size:12px;font-weight:700;display:inline-flex;gap:8px;align-items:center;background:#1b102dcc;transition:transform .2s,border-color .2s,box-shadow .2s}
-.btn:hover{border-color:#c084fc;transform:translateY(-2px);box-shadow:0 7px 28px #9333ea30}
-.btn.primary{background:linear-gradient(110deg,#c084fc,#8b5cf6);color:#160925;border-color:transparent;box-shadow:0 0 28px #9333ea35}
-.stats{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:13px;margin:35px 0 80px}
-.stat{border:1px solid var(--line);border-radius:15px;padding:22px;background:linear-gradient(145deg,#231439d9,#0f091bd9);min-height:126px;box-shadow:0 14px 45px #0002;backdrop-filter:blur(10px);transition:transform .2s,border-color .2s}
-.stat:hover{transform:translateY(-3px);border-color:#a855f777}
-.statlabel{font:10px 'DM Mono',monospace;color:#b6a8ca;letter-spacing:.1em;text-transform:uppercase;display:flex;justify-content:space-between;gap:8px}
-.big{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-.06em;margin:16px 0 4px}
-.purple{background:linear-gradient(100deg,#f3e8ff,#c084fc 55%,#a78bfa);background-clip:text;-webkit-background-clip:text;color:transparent}
-.sub{font-size:11px;color:var(--muted)}
-.pulse{display:inline-block;width:6px;height:6px;border-radius:50%;background:#c084fc;box-shadow:0 0 9px #c084fc;margin-right:6px}
-.footer{border-top:1px solid var(--line);padding:24px 0 34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#9184a7;font:10px 'DM Mono',monospace;letter-spacing:.04em}
+#space{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+.space-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 0% 25%,rgba(111,35,194,.25),transparent 34%),
+    radial-gradient(ellipse at 100% 52%,rgba(103,32,182,.27),transparent 36%),
+    radial-gradient(ellipse at 54% 0%,rgba(75,26,135,.17),transparent 42%),
+    linear-gradient(115deg,#0b0615 0%,#080510 48%,#0d0618 100%);
+}
+.nebula{
+  position:absolute;
+  width:48vw;height:65vw;max-height:850px;
+  border-radius:50%;
+  filter:blur(65px);
+  opacity:.4;
+  background:radial-gradient(ellipse,rgba(135,45,245,.45),rgba(80,26,155,.2) 38%,transparent 70%);
+  animation:nebulaFloat 18s ease-in-out infinite alternate;
+}
+.nebula.one{left:-25vw;top:-10vh}
+.nebula.two{right:-27vw;top:15vh;animation-delay:-8s;opacity:.38}
+.nebula.three{left:28vw;bottom:-65vh;opacity:.2;animation-delay:-4s}
+@keyframes nebulaFloat{
+  from{transform:translate3d(-2%,0,0) scale(1)}
+  to{transform:translate3d(4%,3%,0) scale(1.12)}
+}
+.planet{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 28% 24%,rgba(205,160,255,.42),transparent 18%),
+    radial-gradient(ellipse at 35% 30%,#38205f 0%,#1a1030 43%,#0b0714 72%);
+  box-shadow:inset -18px -10px 35px #030208,0 0 60px #8035d52b;
+}
+.planet:after{
+  content:"";position:absolute;inset:-12% -27%;
+  border:1px solid rgba(177,112,255,.28);
+  border-radius:50%;transform:rotate(-22deg) scaleY(.3);
+  box-shadow:0 0 15px #8b5cf626;
+}
+.planet.top-right{
+  width:330px;height:330px;right:-145px;top:70px;
+  opacity:.85;
+}
+.planet.bottom-left{
+  width:310px;height:310px;left:-175px;top:57%;
+  opacity:.72;
+}
+.orbit{
+  position:absolute;width:110vw;height:48vw;max-height:650px;
+  border:1px solid rgba(151,83,242,.12);border-radius:50%;
+  transform:rotate(-22deg);
+}
+.orbit.one{left:-25vw;top:18vh}
+.orbit.two{left:15vw;top:38vh;transform:rotate(18deg);opacity:.65}
+.wrap{
+  width:min(1220px,calc(100% - 48px));
+  margin:auto;position:relative;z-index:1;
+}
+.top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:25px 0;border-bottom:1px solid var(--line);
+}
+.brand{
+  display:flex;align-items:center;gap:12px;
+  font-size:19px;font-weight:800;letter-spacing:-.055em;
+}
+.mark{
+  width:42px;height:42px;display:grid;place-items:center;
+  border:1px solid #a855f7a0;border-radius:13px;
+  background:linear-gradient(145deg,#291445dd,#10091eeb);
+  color:#fff;font-size:25px;
+  box-shadow:0 0 24px #9333ea30,inset 0 0 14px #9333ea15;
+}
+.brand-dev{color:#b77aff}
+.topright{
+  display:flex;align-items:center;gap:10px;
+  color:#b7a8cb;font:10px 'DM Mono',monospace;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#c084fc;box-shadow:0 0 13px #c084fc;
+}
+main{display:block}
+.hero{padding:110px 0 10px;position:relative}
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  color:#d0b6f4;font:11px 'DM Mono',monospace;
+  letter-spacing:.17em;text-transform:uppercase;
+}
+.eyebrow:before{
+  content:"";width:26px;height:1px;background:#c084fc;
+  box-shadow:0 0 8px #c084fc80;
+}
+h1{
+  margin:26px 0 15px;
+  font-size:clamp(48px,7.2vw,96px);
+  line-height:1.02;letter-spacing:-.085em;
+  font-weight:800;
+}
+.gradient{
+  background:linear-gradient(105deg,#fff 0%,#f3e8ff 18%,#d8a2ff 38%,#9747ff 60%,#c18bff 77%,#f0c5ff 100%);
+  background-size:200% 100%;
+  color:transparent;background-clip:text;-webkit-background-clip:text;
+  animation:gradientFlow 10s ease-in-out infinite alternate;
+  filter:drop-shadow(0 0 24px #a855f73b);
+}
+@keyframes gradientFlow{
+  from{background-position:0% 50%}
+  to{background-position:100% 50%}
+}
+.intro{
+  color:#b7abc9;max-width:590px;
+  font-size:16px;line-height:1.8;margin:18px 0 0;
+}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 20px;border:1px solid #c084fc55;border-radius:12px;
+  font-size:13px;font-weight:800;
+  background:#1b102dcc;transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.btn:hover{
+  border-color:#c084fc;transform:translateY(-2px);
+  box-shadow:0 8px 32px #9333ea35;
+}
+.btn.primary{
+  background:linear-gradient(110deg,#c084fc,#9b5cf6 65%,#7535dc);
+  color:#170925;border-color:transparent;
+  box-shadow:0 0 30px #9333ea3b,inset 0 1px 0 #ffffff55;
+}
+.btn.primary:hover{box-shadow:0 0 38px #9333ea60}
+.btn-arrow{font-size:17px}
+.stats{
+  display:grid;grid-template-columns:1.35fr 1fr 1fr;
+  gap:18px;margin:36px 0 98px;
+}
+.stat{
+  min-width:0;position:relative;overflow:hidden;
+  border:1px solid rgba(179,119,255,.27);border-radius:19px;
+  padding:26px 29px;background:linear-gradient(135deg,rgba(35,20,55,.76),rgba(14,8,27,.78));
+  min-height:158px;
+  box-shadow:0 18px 55px #0003,inset 0 1px 0 #ffffff05;
+  backdrop-filter:blur(15px);
+  transition:transform .25s,border-color .25s,background .25s;
+}
+.stat:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 0 0,#9b5cf614,transparent 65%);
+}
+.stat:hover{
+  transform:translateY(-4px);border-color:#b77aff75;
+  background:linear-gradient(135deg,rgba(44,24,70,.83),rgba(17,9,31,.86));
+}
+.statlabel{
+  position:relative;display:flex;justify-content:space-between;align-items:center;
+  gap:8px;color:#c9b7df;font:10px 'DM Mono',monospace;
+  letter-spacing:.12em;text-transform:uppercase;
+}
+.live{white-space:nowrap;color:#d7b9ff}
+.big{
+  position:relative;font-size:clamp(32px,4vw,46px);
+  font-weight:800;letter-spacing:-.065em;line-height:1.1;
+  margin:20px 0 8px;
+}
+.purple{
+  background:linear-gradient(105deg,#fff0ff,#d8b0ff 48%,#a56bff);
+  background-clip:text;-webkit-background-clip:text;color:transparent;
+}
+.sub{
+  position:relative;font-size:12px;color:#a99bbd;
+  display:flex;align-items:center;gap:2px;
+}
+.pulse{
+  display:inline-block;width:6px;height:6px;flex:0 0 6px;
+  border-radius:50%;background:#c084fc;box-shadow:0 0 10px #c084fc;
+  margin-right:5px;
+}
+.stat-icon{
+  position:absolute;right:27px;bottom:29px;
+  width:35px;height:35px;color:#b17aff;
+  filter:drop-shadow(0 0 11px #9347f75c);
+  opacity:.78;
+}
+.stat-icon svg{width:100%;height:100%;fill:currentColor}
+.footer{
+  border-top:1px solid var(--line);padding:27px 0 34px;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  color:#a294b6;font:10px 'DM Mono',monospace;letter-spacing:.08em;
+}
+.footer a{transition:color .2s}
 .footer a:hover{color:#e9d5ff}
-@media(max-width:650px){.hero{padding-top:65px}.stats{grid-template-columns:1fr 1fr;margin-bottom:55px}.stat:first-child{grid-column:1/-1}.top{padding:19px 0}.topright{font-size:9px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+@media(max-width:760px){
+  .wrap{width:calc(100% - 36px)}
+  .hero{padding-top:82px}
+  .stats{grid-template-columns:1fr 1fr;gap:12px;margin-bottom:65px}
+  .stat:first-child{grid-column:1/-1}
+  .stat{padding:22px;min-height:142px}
+  .planet.top-right{width:230px;height:230px;right:-145px;top:115px}
+  .planet.bottom-left{width:200px;height:200px;left:-135px}
+  .intro{font-size:14px}
+}
+@media(max-width:480px){
+  .top{padding:19px 0}
+  .brand{font-size:17px}
+  .mark{width:37px;height:37px}
+  .topright{font-size:8px;letter-spacing:.07em}
+  .hero{padding-top:70px}
+  h1{font-size:clamp(44px,12vw,60px)}
+  .stats{grid-template-columns:1fr;margin-top:28px}
+  .stat:first-child{grid-column:auto}
+  .stat{min-height:130px}
+  .big{font-size:37px}
+  .stat-icon{width:30px;height:30px;right:22px;bottom:25px}
+  .footer{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+}
 </style>
 </head>
+
 <body>
+<div class="space-bg" aria-hidden="true">
+  <div class="nebula one"></div>
+  <div class="nebula two"></div>
+  <div class="nebula three"></div>
+  <div class="orbit one"></div>
+  <div class="orbit two"></div>
+  <div class="planet top-right"></div>
+  <div class="planet bottom-left"></div>
+</div>
 <canvas id="space" aria-hidden="true"></canvas>
-<div class="wrap">
-<header class="top">
-<a class="brand" href="#" aria-label="Zain home"><span class="mark">✦</span><span>zain<span style="color:#a78bfa">/dev</span></span></a>
-<div class="topright"><span class="dot"></span>Roblox developer</div>
-</header>
-<main>
-<section class="hero">
-<div class="eyebrow">Independent game developer</div>
-<h1>Hello, I'm <span class="gradient">Zain.</span></h1>
-<p class="intro">Building and scaling Roblox games.</p>
-<div class="links">
-<a class="btn primary" id="robloxLink" href="https://www.roblox.com/users/5844444498/profile" target="_blank" rel="noreferrer">↗ Roblox profile</a>
+
+<div class="wrap" id="top">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Zain home">
+      <span class="mark">✦</span>
+      <span>zain<span class="brand-dev">/dev</span></span>
+    </a>
+    <div class="topright"><span class="dot"></span>Roblox developer</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Independent game developer</div>
+      <h1>Hello, I'm <span class="gradient">Zain.</span></h1>
+      <p class="intro">Building and scaling Roblox games.</p>
+      <div class="links">
+        <a class="btn primary" id="robloxLink"
+           href="https://www.roblox.com/users/5844444498/profile"
+           target="_blank" rel="noopener noreferrer">
+          <span class="btn-arrow">→</span> Roblox profile
+        </a>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Roblox statistics">
+      <div class="stat">
+        <div class="statlabel">
+          <span>Total concurrent players</span>
+          <span class="live">✦ LIVE</span>
+        </div>
+        <div class="big purple" id="totalCcu">—</div>
+        <div class="sub" id="updated"><span class="pulse"></span>Loading stats…</div>
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-3.8-5.2A6 6 0 0 1 16 11ZM8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-3.3 0-6 1.7-6 3.8V21h12v-3.2C14 15.7 11.3 14 8 14Zm8 .1c-.5 0-1 .04-1.5.12 1.5.9 2.5 2.2 2.5 3.6V21h5v-3.2c0-2.1-2.7-3.7-6-3.7Z"/></svg>
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="statlabel">Experiences tracked</div>
+        <div class="big purple" id="gameCount">—</div>
+        <div class="sub">Across your portfolio</div>
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 6h10a4 4 0 0 1 3.8 2.8l2 6.2a3 3 0 0 1-4.8 3.2l-2.2-1.7H8.2L6 18.2a3 3 0 0 1-4.8-3.2l2-6.2A4 4 0 0 1 7 6Zm1 3H6v2H4v2h2v2h2v-2h2v-2H8V9Zm8 1.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Zm3 2.8a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4Z"/></svg>
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="statlabel">Groups</div>
+        <div class="big purple" id="groupCount">15</div>
+        <div class="sub">Roblox communities</div>
+        <div class="stat-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 0a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM9 13c-3.9 0-7 2-7 4.5V21h14v-3.5C16 15 12.9 13 9 13Zm7 0c-.5 0-1 0-1.5.1 1.7 1 2.5 2.5 2.5 4.4V21h5v-3.5c0-2.5-2.7-4.5-6-4.5Z"/></svg>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> ZAIN</span>
+    <span>DATA FROM ROBLOX · <a href="#top" id="backToTop">BACK TO TOP ↑</a></span>
+  </footer>
 </div>
-</section>
-<section class="stats" aria-label="Roblox statistics">
-<div class="stat">
-<div class="statlabel"><span>Total concurrent players</span><span>✦ LIVE</span></div>
-<div class="big purple" id="totalCcu">—</div>
-<div class="sub" id="updated"><span class="pulse"></span>Loading stats…</div>
-</div>
-<div class="stat">
-<div class="statlabel">Experiences tracked</div>
-<div class="big purple" id="gameCount">—</div>
-<div class="sub">Across your portfolio</div>
-</div>
-<div class="stat">
-<div class="statlabel">Groups</div>
-<div class="big purple" id="groupCount">15</div>
-<div class="sub">Roblox communities</div>
-</div>
-</section>
-</main>
-<footer class="footer">
-<span>© <span id="year"></span> ZAIN</span>
-<span>DATA FROM ROBLOX · <a href="#" id="backToTop">BACK TO TOP ↑</a></span>
-</footer>
-</div>
+
 <script src="./config.js"></script>
 <script>
-const byId=id=>document.getElementById(id);
-const fmt=n=>Number(n||0).toLocaleString("en-US");
-byId("year").textContent=new Date().getFullYear();
+const byId = id => document.getElementById(id);
+const fmt = n => Number(n || 0).toLocaleString("en-US");
 
-const cfg=window.PORTFOLIO_CONFIG||{};
-byId("robloxLink").href=cfg.robloxProfileUrl||"https://www.roblox.com/users/5844444498/profile";
-const api=(cfg.workerUrl||"").replace(/\/+$/,"");
-const cacheKey="zain_portfolio_stats_v1";
+byId("year").textContent = new Date().getFullYear();
 
-function showStats(data,cached=false){
- if(!data||!Array.isArray(data.games))return;
- byId("totalCcu").textContent=fmt(data.totalCcu);
- byId("gameCount").textContent=fmt(data.games.length);
- byId("groupCount").textContent=fmt(data.groupCount||15);
- byId("updated").innerHTML='<span class="pulse"></span>'+(cached?"Last known stats":"Updated ")+new Date(data.updatedAt||Date.now()).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+const cfg = window.PORTFOLIO_CONFIG || {};
+byId("robloxLink").href =
+  cfg.robloxProfileUrl ||
+  "https://www.roblox.com/users/5844444498/profile";
+
+const api = (cfg.workerUrl || "").replace(/\/+$/, "");
+const cacheKey = "zain_portfolio_stats_v1";
+
+function showStats(data, cached = false) {
+  if (!data || !Array.isArray(data.games)) return;
+
+  byId("totalCcu").textContent = fmt(data.totalCcu);
+  byId("gameCount").textContent = fmt(data.games.length);
+  byId("groupCount").textContent = fmt(data.groupCount || 15);
+
+  const label = cached ? "Last known stats" : "Updated ";
+  const time = new Date(data.updatedAt || Date.now())
+    .toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+  byId("updated").innerHTML =
+    '<span class="pulse"></span>' + label + time;
 }
-try{
- const saved=localStorage.getItem(cacheKey);
- if(saved)showStats(JSON.parse(saved),true);
-}catch(e){}
 
-async function refreshStats(){
- if(!api){if(byId("totalCcu").textContent==="—")byId("updated").textContent="Stats temporarily unavailable";return}
- const controller=new AbortController();
- const timer=setTimeout(()=>controller.abort(),8000);
- try{
-  const res=await fetch(api+"/api/stats",{cache:"no-store",signal:controller.signal});
-  if(!res.ok)throw new Error("Stats unavailable");
-  const data=await res.json();
-  if(!Array.isArray(data.games))throw new Error("Unexpected stats");
-  showStats(data,false);
-  try{localStorage.setItem(cacheKey,JSON.stringify(data))}catch(e){}
- }catch(e){
-  if(byId("totalCcu").textContent==="—")byId("updated").textContent="Stats are temporarily unavailable";
- }finally{clearTimeout(timer)}
-}
-byId("backToTop").addEventListener("click",e=>{e.preventDefault();window.scrollTo({top:0,behavior:"smooth"})});
-refreshStats();
-setInterval(refreshStats,60000);
+try {
+  const saved = localStorage.getItem(cacheKey);
+  if (saved) showStats(JSON.parse(saved), true);
+} catch (e) {}
 
-/* Purple starfield that gently responds to the cursor */
-(()=>{
- const canvas=byId("space"),ctx=canvas.getContext("2d");
- let w=0,h=0,dpr=1,stars=[],mx=.5,my=.5;
- const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
- function resize(){
-  dpr=Math.min(window.devicePixelRatio||1,2);
-  w=innerWidth;h=innerHeight;
-  canvas.width=w*dpr;canvas.height=h*dpr;
-  canvas.style.width=w+"px";canvas.style.height=h+"px";
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-  stars=Array.from({length:Math.min(180,Math.floor(w*h/6500))},()=>({
-   x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.35+.25,
-   a:Math.random()*.65+.2,p:Math.random()*Math.PI*2,s:Math.random()*.6+.2
-  }));
- }
- function draw(t){
-  ctx.clearRect(0,0,w,h);
-  for(const s of stars){
-   const x=s.x+(mx-.5)*24*s.s;
-   const y=s.y+(my-.5)*24*s.s;
-   const twinkle=reduced?1:(.72+Math.sin(t*.001+s.p)*.28);
-   ctx.beginPath();
-   ctx.fillStyle=`rgba(200,165,255,${s.a*twinkle})`;
-   ctx.arc(x,y,s.r,0,Math.PI*2);
-   ctx.fill();
+async function refreshStats() {
+  if (!api) {
+    if (byId("totalCcu").textContent === "—") {
+      byId("updated").textContent = "Stats temporarily unavailable";
+    }
+    return;
   }
-  if(!reduced)requestAnimationFrame(draw);
- }
- window.addEventListener("resize",resize,{passive:true});
- window.addEventListener("pointermove",e=>{
-  mx=e.clientX/Math.max(1,w);my=e.clientY/Math.max(1,h);
-  document.documentElement.style.setProperty("--mx",mx-.5);
-  document.documentElement.style.setProperty("--my",my-.5);
- },{passive:true});
- resize();
- requestAnimationFrame(draw);
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+
+  try {
+    const res = await fetch(api + "/api/stats", {
+      cache: "no-store",
+      signal: controller.signal
+    });
+
+    if (!res.ok) throw new Error("Stats unavailable");
+
+    const data = await res.json();
+    if (!Array.isArray(data.games)) throw new Error("Unexpected stats");
+
+    showStats(data, false);
+
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify(data));
+    } catch (e) {}
+  } catch (e) {
+    if (byId("totalCcu").textContent === "—") {
+      byId("updated").textContent = "Stats are temporarily unavailable";
+    }
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+byId("backToTop").addEventListener("click", e => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+refreshStats();
+setInterval(refreshStats, 60000);
+
+/* Subtle purple starfield */
+(() => {
+  const canvas = byId("space");
+  const ctx = canvas.getContext("2d");
+  let w = 0, h = 0, dpr = 1, stars = [];
+  let mx = .5, my = .5;
+  const reduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = innerWidth;
+    h = innerHeight;
+
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    stars = Array.from({
+      length: Math.min(240, Math.floor(w * h / 4500))
+    }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.25 + .2,
+      a: Math.random() * .6 + .12,
+      p: Math.random() * Math.PI * 2,
+      s: Math.random() * .6 + .2
+    }));
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+
+    for (const s of stars) {
+      const x = s.x + (mx - .5) * 16 * s.s;
+      const y = s.y + (my - .5) * 16 * s.s;
+      const twinkle = reduced ? 1 :
+        .72 + Math.sin(t * .001 + s.p) * .28;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(197,151,255,${s.a * twinkle})`;
+      ctx.arc(x, y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (!reduced) requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", resize, { passive: true });
+
+  window.addEventListener("pointermove", e => {
+    mx = e.clientX / Math.max(1, w);
+    my = e.clientY / Math.max(1, h);
+  }, { passive: true });
+
+  resize();
+  requestAnimationFrame(draw);
 })();
 </script>
 </body>
